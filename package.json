@@ -1,0 +1,30 @@
+{
+  "name": "check-flash-webp",
+  "version": "1.0.0",
+  "description": "A Chrome extension for demonstration purposes.",
+  "main": "src/background/service-worker.ts",
+  "scripts": {
+    "dev": "rollup -c --watch",
+    "build": "rollup -c",
+    "lint": "eslint .",
+    "test": "jest"
+  },
+  "keywords": [
+    "chrome",
+    "extension",
+    "typescript"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
+  "dependencies": {
+    "@types/chrome": "^0.1.31",
+    "sharp": "^0.34.5"
+  },
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "^29.0.0",
+    "@rollup/plugin-node-resolve": "^16.0.3",
+    "eslint": "^7.0.0",
+    "jest": "^26.0.0",
+    "rollup": "^4.53.3"
+  }
+}

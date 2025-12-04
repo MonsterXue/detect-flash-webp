@@ -1,0 +1,51 @@
+{
+  "name": "detect-flash-webp",
+  "version": "1.0",
+  "description": "闪图检测",
+  "manifest_version": 3,
+  "permissions": [
+    "declarativeNetRequest",
+    "declarativeNetRequestFeedback",
+    "tabs",
+    "activeTab",
+    "scripting"
+  ],
+  "action": {
+    "default_popup": "src/popup/popup.html",
+    "default_icon": {
+      "16": "src/icons/icon.png",
+      "48": "src/icons/icon.png",
+      "128": "src/icons/icon.png"
+    }
+  },
+  "background": {
+    "service_worker": "dist/background/service-worker.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["dist/content_scripts/content.js"]
+    }
+  ],
+  "icons": {
+    "16": "src/icons/icon.png",
+    "48": "src/icons/icon.png",
+    "128": "src/icons/icon.png"
+  },
+  "declarative_net_request": {
+    "rule_resources": [
+      {
+        "id": "ruleset_1",
+        "enabled": true,
+        "path": "networkRules.json"
+      }
+    ]
+  },
+  "web_accessible_resources": [
+    {
+      "resources": ["src/styles/popup.css"],
+      "matches": ["<all_urls>"]
+    }
+  ],
+  "host_permissions": ["<all_urls>"]
+}
