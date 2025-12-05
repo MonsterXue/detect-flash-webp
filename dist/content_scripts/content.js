@@ -419,8 +419,9 @@ var WebPFlashDetector = (function () {
 		const { detectFlashWebP } = requireWebPFlashDetector();
 		const TaskQueue = requireTaskQueue();
 
-		const avatar = new Set();
+		const urlCache = new Set();
 		const taskQueue = new TaskQueue();
+
 		function injectCss(url) {
 		    const css = `img[src="${url}"] {display: none!important;}`;
 		    chrome.runtime.sendMessage({
@@ -430,12 +431,11 @@ var WebPFlashDetector = (function () {
 		}
 
 		function handleCheckImg(url) {
-		    if (avatar.has(url)) return
-		    avatar.add(url);
+		    if (urlCache.has(url)) return
+		    urlCache.add(url);
 		    taskQueue.add(async () => {
 		        const result = await detectFlashWebP(url);
-		        if (result < 3) return
-		        console.log(url);
+		        if (result < 10) return
 		        injectCss(url);
 		    });
 		    taskQueue.run();
